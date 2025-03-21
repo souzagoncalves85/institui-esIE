@@ -10,12 +10,10 @@ const Instituicoes = () => {
     const [ies, setIes] = useState([]);
     const [nomeBusca, setNomeBusca] = useState("");
 
-    // 🔁 Buscar instituições ao abrir a página
     const fetchData = async () => {
         try {
             const response = await fetch("http://localhost:3000/instituicoes");
             const json = await response.json();
-            console.log("🔍 Dados carregados no estado:", json); // Verifique no console
             setIes(json);
         } catch (error) {
             console.error("Erro ao buscar instituições:", error);
@@ -26,7 +24,6 @@ const Instituicoes = () => {
         fetchData();
     }, []);
 
-    // ❌ Remover uma instituição
     const handleRemover = async (id) => {
         try {
             await fetch(`http://localhost:3000/instituicoes/${id}`, {
@@ -38,7 +35,6 @@ const Instituicoes = () => {
         }
     };
 
-    // 🔎 Filtrar
     const listaFiltrada = ies.filter((ie) =>
         ie.escola?.toLowerCase().includes(nomeBusca.toLowerCase())
     );
